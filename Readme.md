@@ -33,7 +33,3 @@
 * **Egyéb:** `django-cors-headers` (CORS kezelés), `Pillow` (képkezelés)
 
 ---
-
-## Projekt Struktúra
-
-drivvy/ ├── backend/ # Django backend projekt │ ├── apps/ # A projekt Django app-jai │ │ ├── users/ # Felhasználói fiókok, Auth │ │ ├── cars/ # Autók, Kategóriák │ │ ├── bookings/ # Foglalások kezelése │ │ └── payments/ # Stripe fizetési logika │ ├── drivvy/ # Fő Django projekt beállítások (settings.py) │ ├── venv/ # Virtuális környezet │ ├── manage.py │ └── requirements.txt │ └── frontend/ # Next.js frontend alkalmazás ├── src/ │ ├── app/ │ │ ├── (main)/ # Fő elrendezés (Navbar + Footer) │ │ │ ├── layout.tsx │ │ │ ├── page.tsx (Főoldal) │ │ │ └── search/ │ │ └── (auth)/ # Auth elrendezés (letisztult) │ │ ├── login/ │ │ └── register/ │ ├── components/ # Újrafelhasználható React komponensek │ ├── lib/ # Segédfüggvények │ │ └── api.ts # Központi Django API kliens │ └── types.ts # TypeScript típusdefiníciók ├── public/ ├── package.json └── tsconfig.json
