@@ -1,0 +1,1 @@
+//Ide kerülnek majd az autó specifikus leírások, képek, fogalási gombok.
