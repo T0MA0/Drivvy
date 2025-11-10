@@ -2,7 +2,7 @@
 
 Üdv a Drivvy projektben! Ez egy teljeskörű (full-stack) webalkalmazás, ami egy peer-to-peer autómegosztó szolgáltatást valósít meg. A felhasználók feltölthetik saját autóikat, amiket más regisztrált felhasználók kibérelhetnek.
 
-* **Frontend:** Egy Next.js (App Router) alkalmazás, ami a felhasználói felületet biztosítja.
+* **Frontend:** Egy Next.js (App Router) alkalmazás, ami a felhasználói felületet biztosítja.(Ezen a mappán belül tartozik egy readme ami elmondja hogy kell buildelni vagyis megnézni hogy hogyan nézki a weboldal.)
 * **Backend:** Egy Django REST Framework API, ami az adatbázist, az üzleti logikát és a felhasználói hitelesítést kezeli.
 
 ## Next.js használata:
