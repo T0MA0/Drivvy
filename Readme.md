@@ -7,6 +7,7 @@
 
 ## Next.js használata:
 A next.js egy keretrendszer, amely megkönnyíti a react alapú user interfacek fejlesztését. React hiányoságait oldaja meg és megkönnyyíti az útválasztást. 
+* Public: kérem ide feltölteni azokat fájlokat ami kép kiterjesztésű.
 * Src vagy más néven source nevezetű mappában találhatóak a web oldalhoz szükséges mappák, és a mappákhoz tartozó fájlok.
   * app:
     * auth: Ebben a mappában találhatóak a bejelentkezéshez és a regisztrációhoz tartozó fájlok amelyek az oldalak kódját tartaémazzák
@@ -20,8 +21,16 @@ A next.js egy keretrendszer, amely megkönnyíti a react alapú user interfacek 
     * api.ts: Ez a fájl segítségével fogjuk majd összekötni a frontendet és a backendet.       
 
 ## Django használata:
-...
-
+* manage.py: A szerver futtatásáért felellős
+* requirement.txt: Python csomagok listázása
+* Drivvy mappa: Kapcsolatokért felelős(frontend, adatbázis)
+  * settings.py: adatbázis és frontend kapcsolatok
+  * urls.py: next.js-től kapot kérések kezelése
+* App mappa: logika funkcionális egységekre bontása
+  * users: felhasználói kapcsolatok kezelése
+  * cars: autók és kategóriák kezelése
+  * bookings: foglalási logikák kezelése
+  * payments: stripe fizetési folyamatok kezelése
 
 ## Fő Funkciók
 
