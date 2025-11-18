@@ -5,6 +5,8 @@
 ```bash/terminal
 cd frontend
 
+npm install
+
 npm run dev
 
 Másoldki az url-t és másold be egy keresőbe.(Az első linekt másold ki)
