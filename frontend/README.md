@@ -5,7 +5,11 @@
 ```bash/terminal
 cd frontend
 
+<<<<<<< HEAD
 npm install (letölti az össszes csomagot ami a package.json fájlban leírtunk, szükséges hogy fusson a program)
+=======
+npm install
+>>>>>>> refs/remotes/origin/main
 
 npm run dev
 

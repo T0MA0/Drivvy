@@ -15,9 +15,13 @@ export default function RootLayout({
   return (
     <html lang="hu">
       <body>
+<<<<<<< HEAD
         <AuthProvider>
              {children}
         </AuthProvider>
+=======
+        {children}
+>>>>>>> refs/remotes/origin/main
       </body>
     </html>
   );
