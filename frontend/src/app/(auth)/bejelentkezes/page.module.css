@@ -1,0 +1,200 @@
+.login_wrapper {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #E0E0E0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.login_box {
+    background-color: #1F1F1F;
+    padding: 30px;
+    border-radius: 10px;
+    width: 350px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    /* Fontos: A bezáró gomb abszolút pozícionálásához */
+    position: relative; 
+}
+
+.header h2 {
+    margin: 0 0 25px 0;
+    font-weight: bold;
+}
+
+.form_group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form_group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.form_group input[type="email"],
+.form_group input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #333333;
+    border: 1px solid #555555;
+    border-radius: 5px;
+    color: #FFFFFF;
+    box-sizing: border-box;
+}
+
+.login_button {
+    width: 100%;
+    padding: 12px;
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.login_button:hover {
+    background-color: #168a40;
+}
+
+.forgot_password {
+    display: block;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #AAAAAA;
+    text-decoration: none;
+}
+
+.forgot_password:hover {
+    color: #1DB954;
+    text-decoration: underline;
+}
+
+.close_btn {
+    position: absolute;
+    top: 5px; 
+    right: 5px; /* Áthelyezés a jobb oldalra */
+    text-decoration: none;
+    color: #AAAAAA;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 5px;
+    line-height: 1; 
+    transition: color 0.3s;
+  }
+  .close_btn:hover{
+    cursor: pointer;
+  }
+
+  .login_layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #121212;
+    color: #E0E0E0;
+    font-family: Arial, sans-serif;
+  } 
+  
+  .login_box {
+      background-color: #1F1F1F;
+      position: relative;
+      padding: 25px;
+      border-radius: 10px;
+      width: 410px;
+      height: auto;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .header h2 {
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .form_group {
+      margin-bottom: 20px;
+  }
+  
+  .form_group label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+      font-weight: bold;
+  }
+  
+  .form_group input[type="text"],
+  .form_group input[type="email"],
+  .form_group input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #333333;
+      border: 1px solid #555555;
+      border-radius: 5px;
+      color: #FFFFFF;
+      box-sizing: border-box;
+      font-size: 15px;
+  }
+  
+  .login_button {
+      width: 100%;
+      padding: 12px;
+      background-color: #1DB954;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 10px;
+  }
+  
+  .login_button:hover {
+      background-color: #168a40;
+  }
+  
+  .forgot_password {
+      display: block;
+      margin-top: 15px;
+      font-size: 13px;
+      color: #AAAAAA;
+      text-decoration: none;
+      text-align: center;
+  }
+  
+  .forgot_password:hover {
+      color: #1DB954;
+      text-decoration: underline;
+  }
+  
+  /* ===== REGISZTRÁCIÓ ===== */
+  .close_btn {
+    position: absolute;
+    top: 5px; 
+    right: 5px; /* Áthelyezés a jobb oldalra */
+    text-decoration: none;
+    color: #AAAAAA;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 5px;
+    line-height: 1; 
+    transition: color 0.3s;
+  }
+  .close_btn:hover{
+    cursor: pointer;
+  }

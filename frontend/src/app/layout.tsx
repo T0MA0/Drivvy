@@ -1,12 +1,23 @@
-import React from 'react';
-import './globals.css'; // Feltéve, hogy ez létezik
+import type { Metadata } from "next";
+import "./globals.css";
+import { AuthProvider } from "@/context/AuthContext";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const metadata: Metadata = {
+  title: "Drivvy - Autóbérlés",
+  description: "Bérelj autót egyszerűen Győrben",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="hu">
       <body>
-        <h1>Azta Paszta Cipő Paszta</h1>
-        {children}
+        <AuthProvider>
+             {children}
+        </AuthProvider>
       </body>
     </html>
   );

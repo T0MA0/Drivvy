@@ -1,0 +1,42 @@
+.search__form{
+    margin-top:1rem;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:1rem;
+  }
+  .field{
+    display:flex; flex-direction:column; gap:.4rem;
+    background:var(--surface-solid);
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:14px; padding:.6rem .8rem;
+  }
+  .field > span{
+    font-size:.9rem;
+    color:var(--muted)
+}
+
+.field input{
+    background:transparent;
+    border:0;
+    color:var(--text);
+    font-size:1rem;
+    outline:none
+}
+  
+  /* ===== Keresés gomb (ikon + szöveg, középre) ===== */
+.search__cta {
+    position:relative;
+    background: var(--primary) url("/Search_icon.png") no-repeat 1.2rem center;
+    background-size: 25px 25px;  /* a kép mérete */
+    color: #101313;
+    font-weight: 700;
+    text-align: center;
+    padding-left: 2rem; /* hely a képnek */
+    transition: background-color 0.2s ease;
+    grid-column: 1 / -1; /* átnyúlik mindkét oszlopon */
+    
+}
+  
+.search__cta:hover {
+    background-color: var(--primary-600);
+}

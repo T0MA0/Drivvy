@@ -1,13 +1,19 @@
-//Ide kerülnek azok a kódok amelyeket több oldalon me kell majd jeleníteni például a header és a footer
-import Navbar from '@/components/navbar';
-import Footer from '@/components/footer';
+import Header from "@/components/layout/header/header";
+import Footer from "@/components/layout/footer/footer";
+import React from "react";
 
-export default function MainLayout({ children }: { children: React.ReactNode }) {
-    return (
-      <div>
-        <Navbar/>
-        <main>{children}</main>
-        <Footer />
-      </div>
-    );
-  }
+export default function MainLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <>
+      <Header />
+      <main>
+        {children}
+      </main>
+      <Footer />
+    </>
+  );
+}
