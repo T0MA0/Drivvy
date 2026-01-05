@@ -1,17 +1,16 @@
 "use client";
 
 import Link from 'next/link';
-import style from "./header.module.css"; // Ellenőrizd az útvonalat!
+import style from "./header.module.css";
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { useAuth } from '@/context/AuthContext'; // A globális állapot
+import { useAuth } from '@/context/AuthContext';
 
 export default function Header() {
   const pathname = usePathname();
-  const { user, logout } = useAuth(); // Adatok a Contextből
+  const { user, logout } = useAuth(); 
   const [isHidden, setIsHidden] = useState<boolean>(false);
-  // ==============================================
 
   // === LOGIKA: GÖRGETÉS FIGYELÉSE ===
   useEffect(() => {
@@ -46,22 +45,19 @@ export default function Header() {
             </Link>
           </div>
           
-          {/* MENÜRENDSZER */}
+          {/* NAV */}
           <nav className={style.nav}>
-            {/* Állandó linkek */}
             <Link href="/#kapcsolat">Kapcsolat</Link>
             <Link href="/#about-us">Rólunk</Link>
             <Link href="/#how-it-works">Hogyan működik?</Link>
 
-            {/* === 3. LOGIKA: FELHASZNÁLÓI ÁLLAPOT === */}
+            {/* === FELHASZNÁLÓI ÁLLAPOT === */}
             {user ? (
-              // HA BE VAN JELENTKEZVE:
+              // HA BE VAN JELENTKEZVE
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <Link href="/profil" className="btn btn--primary">
                   Fiók
                 </Link>
-
-                {/* KIJELENTKEZÉS (Áttetsző) */}
                 <button 
                     onClick={logout} 
                     className="btn btn--ghost"
@@ -70,14 +66,12 @@ export default function Header() {
                 </button>
               </div>
             ) : (
-              // HA NINCS BEJELENTKEZVE (ALAPÁLLAPOT):
+              // HA NINCS BEJELENTKEZVE
               <>
-                {/* BEJELENTKEZÉS (Áttetsző) */}
                 <Link href={`/bejelentkezes?callbackUrl=${pathname}`} className="btn btn--ghost">
                   Bejelentkezés
                 </Link>
                 
-                {/* REGISZTRÁCIÓ (Zöld) */}
                 <Link href="/regisztracio" className="btn btn--primary">
                   Regisztráció
                 </Link>

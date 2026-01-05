@@ -16,7 +16,6 @@
     width: 350px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     text-align: center;
-    /* Fontos: A bezáró gomb abszolút pozícionálásához */
     position: relative; 
 }
 
@@ -82,7 +81,7 @@
 .close_btn {
     position: absolute;
     top: 5px; 
-    right: 5px; /* Áthelyezés a jobb oldalra */
+    right: 5px;
     text-decoration: none;
     color: #AAAAAA;
     font-size: 25px;
@@ -186,7 +185,7 @@
   .close_btn {
     position: absolute;
     top: 5px; 
-    right: 5px; /* Áthelyezés a jobb oldalra */
+    right: 5px;
     text-decoration: none;
     color: #AAAAAA;
     font-size: 25px;

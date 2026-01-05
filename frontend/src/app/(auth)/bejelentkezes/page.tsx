@@ -5,7 +5,7 @@ import style from "./page.module.css";
 import { useLogin } from "@/hooks/useBelepes";
 
 export default function LoginPage() {
-    // Itt hívjuk meg a logikát, amit az előbb írtunk meg
+    
     const { formData, error, loading, handleChange, onSubmit } = useLogin();
 
     return(

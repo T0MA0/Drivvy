@@ -5,7 +5,7 @@ import { getCars } from '@/services/autoService';
 import FilterSidebar from '@/components/features/FilterSidebar';
 import CarCard from '@/components/features/CarCard';
 import CarModal from '@/components/features/CarModal';
-import SearchBar from '@/components/Main/searchbar/searchbar'; 
+import SearchBar from '@/components/searchbar/searchbar'; 
 
 export default function CarsPage() {
     const [cars, setCars] = useState<any[]>([]);

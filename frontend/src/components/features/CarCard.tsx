@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link'; // <--- EZT NE FELEJTSD EL IMPORTÁLNI!
+import Link from 'next/link'; 
 import { Star } from 'lucide-react'; 
 
 interface CarProps {
@@ -53,8 +53,6 @@ export default function CarCard({ car }: CarProps) {
                         </span>
                         <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}> / nap</span>
                     </div>
-                    
-                    {/* --- ITT A VÁLTOZÁS: Gomb helyett LINK --- */}
                     {/* Ez fog átvinni a /autok/1 oldalra */}
                     <Link 
                         href={`/autok/${car.id}`} 

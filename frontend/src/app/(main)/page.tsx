@@ -1,13 +1,11 @@
-import RolunkComponent from '@/components/Main/rolunk/rolunk';
-import SearchBar from '@/components/Main/searchbar/searchbar';
-import HowItWork from '@/components/Main/hogymukodik/how_mukodik';
-import IsThatSimple from '@/components/Main/ilyen_egyszeru/ilyen_egyszeru';
+import SearchBar from '@/components/searchbar/searchbar';
+import Image from 'next/image';
 
 export default function MainLayout(){
     return (
     <>
         {/* ====== Hero ====== */}
-        {/*} ===== HERO SZEKCIÓ (nyitó rész, háttérkép CSS-ből) ===== */}
+        {/*} ===== HERO SZEKCIÓ ===== */}
         <section className="hero">
             <div className="container hero__grid">
                 <div className="search card">
@@ -26,8 +24,22 @@ export default function MainLayout(){
             </div>
         </section>
         
-        <IsThatSimple/>
-        {/* ===== TULAJDONOSI AJÁNLÓ (autó kiadása) WORK IN PROGRESS A GUIHOZ IGAZÍTVA ===== */}
+        {/* ===== Ilyen egyszerű ===== */}
+        <section className="steps" id="steps">
+           <div className="container">
+                <h3>Ilyen egyszerű!</h3>
+                <ol className="steps__row" aria-label="Folyamat lépései">
+                <li><span className="step__icon">👤</span><span>Regisztráció</span></li>
+                <li className="arrow">→</li>
+                <li><span className="step__icon">🔑</span><span>Egyeztetés</span></li>
+                <li  className="arrow">→</li>
+                <li><span className="step__icon">🚘</span><span>Átvétel</span></li>
+                <li className="arrow">→</li>
+                <li><span className="step__icon">✅</span><span>Használat</span></li>
+                </ol>
+            </div>
+        </section>
+
         <section className="owner">
             <div className="container owner__grid">
                 <div className="owner__content card">
@@ -39,13 +51,11 @@ export default function MainLayout(){
                     <li>Te csak tartsd jó állapotban a járművet, a foglalást rugalmasan kezelheted.</li>
                     </ul>
                 </div>
-                    {/* Jobb oldali illusztráció: háttérkép a CSS-ben állítva*/}
                 <div className="owner__image">
-                    {/* kép csere a CSS-ben .owner__image */}
                 </div>
             </div>
         </section>
-        {/* ===== MIÉRT NÁLUNK? (értékajánlat + képek) ===== */}
+        {/* ===== MIÉRT NÁLUNK? ===== */}
         <section className="why">
             <div className="container why__grid">
                 <div className="why__block card">
@@ -56,9 +66,74 @@ export default function MainLayout(){
                 <div className="why__image --left"></div>
             </div>
         </section>
-        <RolunkComponent/>
-        <HowItWork/>
-        {/* ===== FOLYAMAT LEÍRÁS (összefoglaló doboz) ===== */}
+
+        {/* === ROLUNK === */}
+        <section className="about" id="about-us">
+            <div className="about__grid container">
+                <div className="card about__content">
+                    <h2>Miért pont a Drivvy?</h2>
+                    <p className="about__lead">
+                        A Drivvy-nál hiszünk abban, hogy a városi mobilitásnak rugalmasabbnak, fenntarthatóbbnak és hatékonyabbnak kell lennie. Létrehoztuk a Drivvy-t azzal a céllal, hogy összekössük azokat az autótulajdonosokat, akik megosztanák járművüket, azokkal, akiknek csak alkalmankénti utazáshoz van szükségük autóra.
+                    </p>
+
+                    <div className="about__mission">
+                        <h4>Kölcsönös előnyök</h4>
+                        <p>Az autótulajdonosok extra bevételre tehetnek szert, amikor nem használják a kocsijukat. A bérlők pedig gyorsan, kényelmesen és gyakran olcsóbban juthatnak autóhoz, rugalmas feltételekkel.</p>
+                        
+                        <h4>Átláthatóság és biztonság</h4>
+                        <p>A bérlők részletes és megbízható információkat kapnak az elérhető autókról, az árakról és a bérlés pontos feltételeiről. Platformunk célja, hogy a teljes folyamat a kereséstől a foglalásig gyors és zökkenőmentes legyen.</p>
+                    </div>
+
+                    <div className="about__cta">
+                        <h3>Célunk</h3>
+                        <p>A Drivvy víziója egy olyan jövő, ahol az autóbirtoklás helyett a használat áll a fókuszban. Egy olyan rendszert építünk, amely a közösség erejét kihasználva kínál kényelmes, gazdaságos és környezettudatos alternatívát a személyes mobilitásra.</p>
+                        <p><strong>Csatlakozz a Drivvy közösséghez</strong> – akár bérbe adnál, akár bérelnél – és segíts nekünk abban, hogy a városi élet mindenki számára élhetőbb és szabadabb legyen!</p>
+                    </div>
+                    </div>
+                <div className="about__image">
+                    <Image 
+                        src="/Rolunk_kep.jpg"
+                        alt="Drivvy közösségi autómegosztás illusztrációja"
+                        width={500}
+                        height={500}
+                        className="about__img"/>
+                </div>
+            </div>
+        </section>
+        {/* ===== HOGYAN MŰKÖDIK ===== */}
+        <section className="how_it_works" id="how-it-works">
+            <div className="container">
+                <h2>Hogyan működik a Drivvy?</h2>
+                <p className="how_it_works__desc">
+                    A Drivvy segítségével egyszerűen bérelhetsz autót magánszemélyektől, vagy akár ki is adhatod
+                    a saját autódat, ha épp nincs rá szükséged. Néhány lépésben már indulhatsz is:
+                </p>
+                <div className="how_it_works__grid">
+                    <div className="how_it_works__card">
+                        <span className="step_icon">🔎</span>
+                        <h4>Keress autót a közeledben</h4>
+                        <p>Add meg a helyszínt és az időpontot, és böngéssz a környékeden elérhető járművek között. Találd meg azt, ami legjobban illik az utadhoz.</p>
+                    </div>
+                    <div className="how_it_works__card">
+                        <span className="step_icon">📝</span>
+                        <h4>Foglalj gyorsan és biztonságosan</h4>
+                        <p>Válaszd ki az autót, nézd meg a részleteket, majd küldd el a foglalási kérelmet. A tulajdonos visszaigazolása után már készülhetsz is az átvételre.</p>
+                    </div>
+                    <div className="how_it_works__card">
+                        <span className="step_icon">👍</span>
+                        <h4>Add vissza és értékeld a tapasztalatot</h4>
+                        <p>A bérlés végén add vissza az autót ugyanabban az állapotban, ahogy átvetted. Értékeld a tulajdonost és az autót, hogy mások is tudjanak tájékozódni.</p>
+                    </div>
+                    <div className="how_it_works__card">
+                        <span className="step_icon">🔑</span>
+                        <h4>Vedd át az autót</h4>
+                        <p>Találkozz a tulajdonossal az egyeztetett helyen, ellenőrizd az autót, és indulhat a kaland! A bérlés időtartama alatt a jármű a te kezedben van.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {/* ===== FOLYAMAT LEÍRÁS ===== */}
         <section className="process">
             <div className="container">
                 <div className="card process__card">
@@ -67,7 +142,6 @@ export default function MainLayout(){
                 </div>
             </div>
         </section>
-
     </>
     )
 }

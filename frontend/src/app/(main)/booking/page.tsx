@@ -1,1 +1,0 @@
-//Itt lehet majd beírni a bankártyás adatokat és kifizetni a foglalást.

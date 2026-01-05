@@ -1,4 +1,3 @@
-// src/hooks/useRegister.ts
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { registerUser, RegisterData } from '../services/authentication';

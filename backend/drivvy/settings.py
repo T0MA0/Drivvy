@@ -5,10 +5,9 @@ import os
 import sys
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Ez teszi lehetővé, hogy a Django megtalálja az 'apps' mappában lévő appokat
+# Ez teszi lehetővé, hogy a Django megtalálja az 'apps' mappában lévő fájlokat
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -17,7 +16,8 @@ SECRET_KEY = 'django-insecure-!i=c39n#uz-aaubiq3q=cfr%wh06(31$%wlt=d&8y@z3*xpohd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Railway hosztolás engedélyezése
+ALLOWED_HOSTS = ['*']       
 
 # Application definition
 INSTALLED_APPS = [
@@ -54,7 +54,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'drivvy.urls'
 
-# React frontend engedélyezése
+# Frontend engedélyezése
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
@@ -107,9 +107,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-LANGUAGE_CODE = 'hu-hu' # Átírtam magyarra
+LANGUAGE_CODE = 'hu-hu' 
 
-TIME_ZONE = 'Europe/Budapest' # Átírtam magyar időzónára
+TIME_ZONE = 'Europe/Budapest'
 
 USE_I18N = True
 USE_TZ = True
@@ -118,7 +118,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
 
-# === MEDIA FÁJLOK (Képek feltöltéséhez) ===
+# === KÉpek feltöltéséhez ===
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

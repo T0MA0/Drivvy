@@ -6,7 +6,7 @@ import { useRegister } from "@/hooks/useRegisztracio";
 import { InputGroup } from "@/components/ui/regInput";
 
 export default function RegPage() {
-    // Itt hívjuk meg a saját hookunkat, ami mindent elintéz
+    // Itt hívjuk meg a saját hookunkat
     const { 
         formData, error, loading, acceptedTerms, 
         handleChange, handleCheckbox, onSubmit 
@@ -69,7 +69,7 @@ export default function RegPage() {
                                 type="checkbox"
                                 id="aszf"
                                 checked={acceptedTerms}
-                                onChange={handleCheckbox} // Egyszerűsítve: most együtt mozog a masterrel
+                                onChange={handleCheckbox}
                                 className={style.child_checkbox}
                             />
                             <label htmlFor="aszf" className="mr-2 cursor-pointer">Az Általános Szerződési Feltételeket megismertem és elfogadom.</label>
