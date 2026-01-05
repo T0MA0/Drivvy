@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { getCars } from '@/services/autoService';
 import FilterSidebar from '@/components/features/FilterSidebar';
 import CarCard from '@/components/features/CarCard';
 import CarModal from '@/components/features/CarModal';
 import SearchBar from '@/components/searchbar/searchbar'; 
 
-export default function CarsPage() {
+function CarsContent() {
     const [cars, setCars] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedCar, setSelectedCar] = useState<any>(null);
@@ -72,7 +72,7 @@ export default function CarsPage() {
                     padding: '0 1rem'
                 }}>
                     
-                    {/* A SearchBar komponens behúzása */}
+                    {/* A SearchBar miatt kell a Suspense a szülőbe! */}
                     <div style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)' }}>
                         <h2 style={{ color: 'white', marginBottom: '1rem', fontSize: '1.8rem', fontWeight: 'bold' }}>
                             A keresésed
@@ -139,5 +139,14 @@ export default function CarsPage() {
                 />
             )}
         </section>
+    );
+}
+
+// tartalom becsomagolás
+export default function CarsPage() {
+    return (
+        <Suspense fallback={<div style={{color:'white', textAlign:'center', padding:'50px'}}>Autók betöltése...</div>}>
+            <CarsContent />
+        </Suspense>
     );
 }
