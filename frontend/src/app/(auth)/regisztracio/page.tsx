@@ -1,12 +1,13 @@
 "use client";
 
+import { Suspense } from "react";
 import Link from "next/link";
 import style from "./page.module.css";
 import { useRegister } from "@/hooks/useRegisztracio";
 import { InputGroup } from "@/components/ui/regInput";
 
-export default function RegPage() {
-    // Itt hívjuk meg a saját hookunkat
+
+function RegisterContent() {
     const { 
         formData, error, loading, acceptedTerms, 
         handleChange, handleCheckbox, onSubmit 
@@ -25,7 +26,6 @@ export default function RegPage() {
                 {error && <p style={{color: '#ff4444', textAlign: 'center', marginBottom: '1rem'}}>{error}</p>}
 
                 <form onSubmit={onSubmit}>
-                    {/* Újrafelhasználható Inputok */}
                     <InputGroup 
                         containerClass={style.form_group}
                         label="Keresztnév" id="keresztnev" name="first_name" 
@@ -52,7 +52,6 @@ export default function RegPage() {
                         placeholder="••••••••" value={formData.confirm_password} onChange={handleChange} 
                     />
 
-                    {/* Checkboxok */}
                     <div className={style.checkbox_group}>
                         <div className={`${style.checkbox_item} ${style.master_checkbox_item}`}>
                             <input
@@ -86,5 +85,13 @@ export default function RegPage() {
                 </form>
             </div>
         </div>
+    );
+}
+
+export default function RegPage() {
+    return (
+        <Suspense fallback={<div className="text-white text-center p-10">Betöltés...</div>}>
+            <RegisterContent />
+        </Suspense>
     );
 }

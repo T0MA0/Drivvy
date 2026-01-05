@@ -3,9 +3,12 @@
 import Link from "next/link";
 import style from "./page.module.css";
 import { useLogin } from "@/hooks/useBelepes";
+import { Suspense } from "react"; 
+import { useSearchParams } from "next/navigation";
 
-export default function LoginPage() {
-    
+function LoginContent() {
+    const searchParams = useSearchParams(); 
+
     const { formData, error, loading, handleChange, onSubmit } = useLogin();
 
     return(
@@ -18,7 +21,7 @@ export default function LoginPage() {
                     <h2 className={style.header}>Bejelentkezés</h2>
                 </div>
                 
-                {/* HIBAÜZENET MEGJELENÍTÉSE (Ha elrontotta a jelszót) */}
+                {/* HIBAÜZENET MEGJELENÍTÉSE */}
                 {error && (
                     <p style={{color: '#ff4444', textAlign: 'center', marginBottom: '1rem', fontWeight: 'bold'}}>
                         {error}
@@ -31,9 +34,9 @@ export default function LoginPage() {
                         <input 
                             type="email" 
                             id="email" 
-                            name="email" // egyeznie kell a state nevével
-                            value={formData.email} // Összekötjük a state-tel
-                            onChange={handleChange} // Figyeljük a gépelést
+                            name="email" 
+                            value={formData.email} 
+                            onChange={handleChange} 
                             required  
                             placeholder="Email"
                         />
@@ -44,7 +47,7 @@ export default function LoginPage() {
                         <input 
                             type="password" 
                             id="jelszo" 
-                            name="password" // Backend 'password'-öt vár (nem jelszo-t)
+                            name="password" 
                             value={formData.password}
                             onChange={handleChange}
                             placeholder="••••••••" 
@@ -55,7 +58,7 @@ export default function LoginPage() {
                     <button 
                         type="submit" 
                         className={style.login_button}
-                        disabled={loading} // Letiltjuk, amíg tölt
+                        disabled={loading} 
                     >
                         {loading ? 'Belépés...' : 'Bejelentkezés'}
                     </button>
@@ -67,4 +70,12 @@ export default function LoginPage() {
             </div>
         </div>
     )
+}
+
+export default function LoginPage() {
+    return (
+        <Suspense fallback={<div className="text-white text-center p-10">Betöltés...</div>}>
+            <LoginContent />
+        </Suspense>
+    );
 }
