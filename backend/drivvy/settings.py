@@ -11,10 +11,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-!i=c39n#uz-aaubiq3q=cfr%wh06(31$%wlt=d&8y@z3*xpohd'
+SECRET_KEY = os.environ.get('SECRET_KEY','django-insecure-!i=c39n#uz-aaubiq3q=cfr%wh06(31$%wlt=d&8y@z3*xpohd')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG','True') == 'True'
 
 # Railway hosztolás engedélyezése
 ALLOWED_HOSTS = ['*']       
@@ -42,7 +42,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # Itt hiányzott a vessző!
+    'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -57,8 +58,13 @@ ROOT_URLCONF = 'drivvy.urls'
 # Frontend engedélyezése
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://127.0.0.1:3000",
+    "https://drivvy-carsharing.vercel.app"
 ]
+
+if not DEBUG:
+    CORS_ALLOW_CREDENTIALS = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
 
 TEMPLATES = [
     {
@@ -78,15 +84,31 @@ TEMPLATES = [
 WSGI_APPLICATION = 'drivvy.wsgi.application'
 
 
-# Database
-# Visszaállítottam SQLite-ra a könnyű indítás érdekében.
-# Nem kell telepíteni semmit, azonnal működik.
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# === ADATBÁZIS KONFIGURÁCIÓ ===
+# Logika: Ha van beállítva DB_HOST környezeti változó (Railway), akkor MSSQL.
+# Ha nincs (Localhost), akkor SQLite.
+if os.environ.get('DB_HOST'):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'mssql',
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'HOST': os.environ.get('DB_HOST'),
+            'PORT': '',
+            'OPTIONS': {
+                'driver': 'ODBC Driver 18 for SQL Server',
+            },
+        }
     }
-}
+else:
+    # Helyi fejlesztés
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
@@ -108,15 +130,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 LANGUAGE_CODE = 'hu-hu' 
-
 TIME_ZONE = 'Europe/Budapest'
-
 USE_I18N = True
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # === KÉpek feltöltéséhez ===
 MEDIA_URL = '/media/'
@@ -132,6 +154,4 @@ REST_FRAMEWORK = {
     ],
 }
 
-# === FONTOS: A saját felhasználói modellünk ===
-# A users appban lévő CustomUser osztályra hivatkozunk
 AUTH_USER_MODEL = 'users.CustomUser'
