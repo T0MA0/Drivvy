@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import SearchBar from '@/components/searchbar/searchbar';
 import Image from 'next/image';
 
@@ -10,7 +11,12 @@ export default function MainLayout(){
             <div className="container hero__grid">
                 <div className="search card">
                     <h1  className="text-[2rem] leading-[1.2]">Autóbérlés <br/> <span className="text-[#d6dae3]">Győrben</span></h1>
-                    <SearchBar/>
+                    
+                    {/*suspensebe csomagoljuk hogy ne dobjon hibát*/}
+                    <Suspense fallback={<div className="p-4 text-white">Kereső betöltése...</div>}>
+                        <SearchBar/>
+                    </Suspense>
+
                 </div>
                 <div className="hero__copy">
                     <h2>Győri Drivvy – Szabadság és lehetőség négy keréken!</h2>
@@ -23,6 +29,8 @@ export default function MainLayout(){
                 </div>
             </div>
         </section>
+        
+        {/* ... A TÖBBI RÉSZ VÁLTOZATLAN ... */}
         
         {/* ===== Ilyen egyszerű ===== */}
         <section className="steps" id="steps">
