@@ -63,9 +63,7 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
     'https://drivvy-production.up.railway.app',
 ]
-CSRF_TRUSTED_ORIGINS = [
-    'https://drivvy-production.up.railway.app',
-]
+
 
 if not DEBUG:
     CORS_ALLOW_CREDENTIALS = True
@@ -104,6 +102,7 @@ if os.environ.get('DB_HOST'):
             'PORT': '',
             'OPTIONS': {
                 'driver': 'ODBC Driver 18 for SQL Server',
+                'TrustServerCertificate': 'yes',
             },
         }
     }
