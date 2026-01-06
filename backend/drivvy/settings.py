@@ -60,6 +60,12 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://drivvy-carsharing.vercel.app"
 ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://drivvy-production.up.railway.app',
+]
+CSRF_TRUSTED_ORIGINS = [
+    'https://drivvy-production.up.railway.app',
+]
 
 if not DEBUG:
     CORS_ALLOW_CREDENTIALS = True
