@@ -24,7 +24,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
 class UserDetailSerializer(serializers.ModelSerializer):
     """
-    Ez küldi vissza az adatokat a profil oldalnak (React).
+    Ez küldi vissza az adatokat a profil oldalnak
     """
     class Meta:
         model = User

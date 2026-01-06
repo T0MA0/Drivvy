@@ -19,16 +19,14 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault('is_verified', True)
         return self.create_user(email, first_name, last_name, password, **extra_fields)
 
-class CustomUser(AbstractBaseUser, PermissionsMixin):
-    # === VALIDÁTOROK (Ezeknek a mezők előtt kell lenniük!) ===
-    
+class CustomUser(AbstractBaseUser, PermissionsMixin):    
     # 1. Telefonszám ellenőrző
     phone_validator = RegexValidator(
         regex=r'^\d{11}$', 
         message="A telefonszámnak 11 számjegyből kell állnia."
     )
     
-    # 2. Irányítószám ellenőrző (EZ HIÁNYZOTT!)
+    # 2. Irányítószám ellenőrző
     zip_validator = RegexValidator(
         regex=r'^\d{4}$', 
         message="Az irányítószám 4 számjegyű."
@@ -38,19 +36,18 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True, max_length=255, verbose_name="E-mail")
     first_name = models.CharField(max_length=32, verbose_name="Keresztnév")
     last_name = models.CharField(max_length=32, verbose_name="Vezetéknév")
-    
     birth_date = models.DateField(null=True, blank=True, verbose_name="Születési dátum")
     
     # Itt használjuk a fenti validátort
     phone = models.CharField(max_length=11, null=True, blank=True, validators=[phone_validator], verbose_name="Telefonszám")
     
-    # Itt használjuk a MOST MÁR LÉTEZŐ zip_validatort
+    # Itt használjuk a zip_validatort
     zip_code = models.CharField(max_length=4, null=True, blank=True, validators=[zip_validator], verbose_name="Irányítószám")
     
     address = models.CharField(max_length=50, null=True, blank=True, verbose_name="Lakcím")
     id_card_number = models.CharField(max_length=10, null=True, blank=True, verbose_name="Személyi ig. / Lakcímkártya szám")
     
-    # Képek
+    # Képek (Személyi) 
     id_card_image_front = models.ImageField(upload_to='documents/id_cards/', null=True, blank=True, verbose_name="Személyi ig. előlap")
     id_card_image_back = models.ImageField(upload_to='documents/id_cards/', null=True, blank=True, verbose_name="Személyi ig. hátlap")
     
@@ -92,7 +89,7 @@ class DrivingLicense(models.Model):
         verbose_name="Jogosítvány szám",
         validators=[license_num_validator]
     )
-    
+    # Jogosítvány képek
     license_image_front = models.ImageField(upload_to='documents/licenses/', null=True, blank=True, verbose_name="Jogosítvány előlap")
     license_image_back = models.ImageField(upload_to='documents/licenses/', null=True, blank=True, verbose_name="Jogosítvány hátlap")
 

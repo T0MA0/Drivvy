@@ -14,8 +14,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # === AUTHENTIKÁCIÓ (LOGIN & REGISTER) ===
+
     # Ez a LOGIN: Ha ide küldöd az email/jelszót, tokent kapsz vissza
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    
     # Ez a TOKEN FRISSÍTÉS: Ha lejár a token, itt kérsz újat
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     

@@ -1,23 +1,28 @@
 from django.db import migrations
-import os
+from django.contrib.auth.hashers import make_password
 
-def create_superuser(apps, schema_editor):
-    User = apps.get_model('users', 'User')  
+def create_admin(apps, schema_editor):
+    User = apps.get_model('users', 'CustomUser')
 
-    email = os.environ.get('DJANGO_SUPERUSER_EMAIL', 'admin@drivvy.com')
-    password = os.environ.get('DJANGO_SUPERUSER_PASSWORD', 'Jelszo123')
+    email = "admin@drivvy.com"
+    password = "Jelszo123"
+    first_name = "Admin"   
+    last_name = "Admin"
 
     if not User.objects.filter(email=email).exists():
-        print(f"Superuser létrehozása: {email}")
-        User.objects.create_superuser(
+        print(f"Creating superuser: {email}")
+        User.objects.create(
             email=email,
-            password=password,
-            is_staff=True,
+            password=make_password(password),
+            first_name=first_name,
+            last_name=last_name,
             is_superuser=True,
-            is_active=True
+            is_staff=True,
+            is_active=True,
+            is_verified=True 
         )
     else:
-        print("A superuser már létezik.")
+        print("Superuser already exists")
 
 class Migration(migrations.Migration):
 
@@ -26,5 +31,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(create_superuser),
+        migrations.RunPython(create_admin),
     ]
