@@ -1,0 +1,10 @@
+A Python környezet beállítása
+providers = ["python"]
+
+# Rendszerszintű csomagok telepítése (unixODBC + driverek)
+[phases.setup]
+nixPkgs = ["unixODBC", "unixODBCDrivers", "libpsl"]
+
+# Környezeti változók beállítása, hogy a pyodbc megtalálja a drivereket
+[variables]
+ODBCSYSINI = "/etc"
