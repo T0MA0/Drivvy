@@ -5,7 +5,7 @@ def create_admin(apps, schema_editor):
     User = apps.get_model('users', 'CustomUser')
 
     email = "admin@drivvy.com"
-    password = "Jelszo123"
+    password = "mezeskalacs"
     first_name = "Admin"   
     last_name = "Admin"
 
