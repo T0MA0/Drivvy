@@ -7,6 +7,7 @@ import FilterSidebar from '@/components/features/FilterSidebar';
 import CarCard from '@/components/features/CarCard';
 import CarModal from '@/components/features/CarModal';
 import SearchBar from '@/components/searchbar/searchbar'; 
+import Image from 'next/image';
 
 function CarsContent() {
     const searchParams = useSearchParams(); 
@@ -67,11 +68,12 @@ function CarsContent() {
                 <div style={{
                     position: 'absolute',
                     inset: 0,
-                    backgroundImage: "url('/behind_berlo.png')",
+                    backgroundImage: "url('public/behind_berlo.png')",
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     filter: 'brightness(0.4)'
                 }}></div>
+
 
                 {/* KERESŐ DOBOZ */}
                 <div style={{ 

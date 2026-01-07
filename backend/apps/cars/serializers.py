@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Car  # Feltételezem, hogy a modeled neve 'Car'
+from .models import Car 
 
 class CarSerializer(serializers.ModelSerializer):
     class Meta:
