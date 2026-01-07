@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api';
+const API_URL = 'https://drivvy-production.up.railway.app/api';
 
 export const getCars = async (filters: any = {}) => {
     const params = new URLSearchParams();
