@@ -80,7 +80,7 @@ function RegisterContent() {
                     </div>
 
                     <button type="submit" className={style.reg_button} disabled={loading}>
-                        {loading ? 'Feldolgozás...' : 'Regisztráció'}
+                        {loading ? 'Feldolgozás...' : 'Regisztráció 999'}
                     </button>
                 </form>
             </div>

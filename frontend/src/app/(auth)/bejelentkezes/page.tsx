@@ -4,11 +4,8 @@ import Link from "next/link";
 import style from "./page.module.css";
 import { useLogin } from "@/hooks/useBelepes";
 import { Suspense } from "react"; 
-import { useSearchParams } from "next/navigation";
 
 function LoginContent() {
-    const searchParams = useSearchParams(); 
-
     const { formData, error, loading, handleChange, onSubmit } = useLogin();
 
     return(
