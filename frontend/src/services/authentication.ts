@@ -1,4 +1,5 @@
-const API_URL = 'https://drivvy-production.up.railway.app/api';
+import API_URL from "@/lib/api";
+
 
 export interface RegisterData {
     first_name: string;

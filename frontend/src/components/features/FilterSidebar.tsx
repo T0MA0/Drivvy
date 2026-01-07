@@ -19,8 +19,6 @@ export default function FilterSidebar({ filters, setFilters }: FilterProps) {
             // Ha nem volt benne, hozzáadjuk
             newValues = [...currentValues, value];
         }
-
-        // Frissítjük a szülő (Page) állapotát
         setFilters({ ...filters, [category]: newValues });
     };
 

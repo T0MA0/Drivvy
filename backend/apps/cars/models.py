@@ -57,7 +57,7 @@ class Car(models.Model):
     image = models.ImageField(upload_to='cars/', verbose_name="Autó képe")
     license_plate = models.CharField(max_length=10, unique=True, verbose_name="Rendszám")
     
-    # Validátor (opcionális, de hasznos)
+    # Validátor
     technical_exam_date = models.DateField(null=True, blank=True, verbose_name="Műszaki vizsga")
 
     created_at = models.DateTimeField(auto_now_add=True)

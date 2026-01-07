@@ -93,7 +93,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'drivvy.wsgi.application'
+
 
 
 # === ADATBÁZIS KONFIGURÁCIÓ ===
@@ -102,25 +102,23 @@ WSGI_APPLICATION = 'drivvy.wsgi.application'
 
 print(f"DEBUG: DB_HOST értéke: '{os.environ.get('DB_HOST')}'")
 
-if os.environ.get('DB_HOST'):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'mssql',
-            'NAME': os.environ.get('DB_NAME'),
-            'USER': os.environ.get('DB_USER'),
-            'PASSWORD': os.environ.get('DB_PASSWORD'),
-            'HOST': os.environ.get('DB_HOST'),
-            'PORT': '',
-            'OPTIONS': {
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'mssql',
+        'NAME': 'drivvy-db',
+        'USER': 'aminoAdmino',
+        'PASSWORD': 'Absolute345', 
+        'HOST': 'drivvy-server.database.windows.net',
+        'PORT': '',
+        'OPTIONS': {
                 'driver': 'ODBC Driver 18 for SQL Server',
                 'TrustServerCertificate': 'yes',
-            },
-        }
+        },
     }
-else:
-    print("HIBA: A rendszer nem találja a DB_HOST változót! Állj le!")
-    DATABASES = {}
+}
 
+WSGI_APPLICATION = 'drivvy.wsgi.application'
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
