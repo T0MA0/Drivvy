@@ -68,7 +68,7 @@ function CarsContent() {
                 <div style={{
                     position: 'absolute',
                     inset: 0,
-                    backgroundImage: "url('public/behind_berlo.png')",
+                    backgroundImage: "url('/behind_berlo.png')",
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     filter: 'brightness(0.4)'
