@@ -52,7 +52,6 @@ export default function CarCard({ car }: CarProps) {
                         </span>
                         <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}> / nap</span>
                     </div>
-                    {/* Ez fog átvinni a /autok/1 oldalra */}
                     <Link 
                         href={`/autok/${car.id}`} 
                         className="btn btn--primary" 
