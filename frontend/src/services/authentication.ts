@@ -1,4 +1,4 @@
-const API_URL = 'https://drivvy-production.up.railway.app/api';
+const API_URL = 'https://drivvy-production.up.railway.app';
 
 export interface RegisterData {
     first_name: string;
@@ -9,6 +9,7 @@ export interface RegisterData {
 
 export const registerUser = async (userData: RegisterData) => {
     try {
+        console.log("🔥 EZ A FIX RAILWAY VERZIÓ FUT! 🔥");
         const response = await fetch(`${API_URL}/register/`, {
             method: 'POST',
             headers: {
