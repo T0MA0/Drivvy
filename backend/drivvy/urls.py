@@ -29,24 +29,30 @@ if settings.DEBUG:
 '''
 from django.contrib import admin
 from django.urls import path, include
-from django.http import JsonResponse # <--- Ezt add hozzá
+from django.http import HttpResponse # <--- Fontos import!
 
-# 1. DIAGNOSZTIKAI FÜGGVÉNY (Közvetlenül ide írva)
-def system_check(request):
-    return JsonResponse({
-        "status": "Működik",
-        "location": "Ez a válasz közvetlenül a drivvy/urls.py-ból jön",
-        "next_step": "Ha ezt látod, a szerver fut, a hiba az include-ban van."
-    })
+# --- DEBUG FÜGGVÉNY KEZDETE ---
+def debug_url_list(request):
+    from django.urls import get_resolver
+    # Lekéri az összes betöltött URL mintát
+    patterns = get_resolver().url_patterns
+    
+    html = "<h1>A szerver által ismert URL-ek:</h1><ul>"
+    for p in patterns:
+        html += f"<li style='font-family: monospace; font-size: 16px; margin-bottom: 5px;'>{p}</li>"
+    html += "</ul>"
+    
+    return HttpResponse(html)
+# --- DEBUG FÜGGVÉNY VÉGE ---
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     
-    # 2. TESZT VÉGPONT
-    path('api/system-check/', system_check),
+    # Ezt a sort add hozzá a teszthez:
+    path('debug-urls/', debug_url_list), 
 
-    # A te eredeti soraid
-    path('api/cars/', include('apps.cars.urls')), 
-    # Ha nincs apps mappád, próbáld meg így is egy sorral lejjebb kikommentelve:
-    # path('api/cars-test/', include('cars.urls')), 
+    # Az eredeti soraid
+    path('api/token/', include('rest_framework.urls')), # Ha van ilyen
+    # ... többi token végpont ...
+    path('api/cars/', include('apps.cars.urls')),
 ]
