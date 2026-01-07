@@ -2,6 +2,9 @@
 FROM python:3.11-slim-bullseye
 
 
+WORKDIR /app
+
+
 RUN apt-get update && apt-get install -y \
     curl \
     gnupg2 \
@@ -13,12 +16,13 @@ RUN apt-get update && apt-get install -y \
     && ACCEPT_EULA=Y apt-get install -y msodbcsql18 \
     && apt-get clean
 
-COPY requirements.txt /app/
+
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-WORKDIR /app
 
-COPY . /app/
+COPY . .
+
 
 ENV PYTHONUNBUFFERED=1
 
