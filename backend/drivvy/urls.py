@@ -25,8 +25,6 @@ def debug_url_list(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    # === DEBUG VÉGPONT ===
     path('debug-urls/', debug_url_list),
 
     # === API VÉGPONTOK (Auth) ===
@@ -35,8 +33,7 @@ urlpatterns = [
     path('api/register/', RegisterView.as_view(), name='register'),
     path('api/profile/', UserProfileView.as_view(), name='profile'),
 
-    # === API VÉGPONTOK (Cars) ===
-    # FONTOS: Ha az 'apps' mappa nem létezik, töröld ki az 'apps.' részt!
+    
     path('api/cars/', include('apps.cars.urls')),
 ]
 
