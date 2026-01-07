@@ -1,4 +1,4 @@
-const API_URL = 'http://127.0.0.1:8000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api';
 
 export interface RegisterData {
     first_name: string;
@@ -20,7 +20,6 @@ export const registerUser = async (userData: RegisterData) => {
         const data = await response.json();
 
         if (!response.ok) {
-            // Ha a Django hibát dob, azt itt kezeljük
             throw new Error(data.email ? "Ez az email már foglalt." : "Hiba történt a regisztráció során.");
         }
 

@@ -1,7 +1,6 @@
-const API_URL = 'http://127.0.0.1:8000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api';
 
 export const getCars = async (filters: any = {}) => {
-    // 1. Query String építése (pl. ?brand=BMW&fuel_type=Dízel)
     const params = new URLSearchParams();
 
     // Végigmegyünk a szűrőkön, és hozzáadjuk az URL-hez
@@ -15,7 +14,7 @@ export const getCars = async (filters: any = {}) => {
         }
     });
 
-    // 2. Lekérés a paraméterekkel
+    //Lekérés a paraméterekkel
     const response = await fetch(`${API_URL}/cars/?${params.toString()}`, {
         method: 'GET',
         headers: {

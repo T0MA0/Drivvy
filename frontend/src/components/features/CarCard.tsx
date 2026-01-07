@@ -4,8 +4,6 @@ import { Star } from 'lucide-react';
 
 interface CarProps {
     car: any;
-    // Az onOpenModal-t opcionálissá tettem, vagy kiveheted, ha már nem használod a popupot
-    onOpenModal?: (car: any) => void; 
 }
 
 export default function CarCard({ car }: CarProps) {
