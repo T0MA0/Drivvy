@@ -1,3 +1,4 @@
+'''
 from django.contrib import admin
 from django.urls import path
 from django.conf import settings
@@ -25,3 +26,27 @@ urlpatterns = [
 # Képek kiszolgálása
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+'''
+from django.contrib import admin
+from django.urls import path, include
+from django.http import JsonResponse # <--- Ezt add hozzá
+
+# 1. DIAGNOSZTIKAI FÜGGVÉNY (Közvetlenül ide írva)
+def system_check(request):
+    return JsonResponse({
+        "status": "Működik",
+        "location": "Ez a válasz közvetlenül a drivvy/urls.py-ból jön",
+        "next_step": "Ha ezt látod, a szerver fut, a hiba az include-ban van."
+    })
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    
+    # 2. TESZT VÉGPONT
+    path('api/system-check/', system_check),
+
+    # A te eredeti soraid
+    path('api/cars/', include('apps.cars.urls')), 
+    # Ha nincs apps mappád, próbáld meg így is egy sorral lejjebb kikommentelve:
+    # path('api/cars-test/', include('cars.urls')), 
+]
