@@ -4,10 +4,11 @@ import { Star } from 'lucide-react';
 
 interface CarProps {
     car: any;
-    onOpenModal?: (car: any) => void;
+    // Az onOpenModal-t opcionálissá tettem, vagy kiveheted, ha már nem használod a popupot
+    onOpenModal?: (car: any) => void; 
 }
 
-export default function CarCard({ car, onOpenModal}: CarProps) {
+export default function CarCard({ car }: CarProps) {
     return (
         <div className="card" style={{ padding: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%' }}>
             {/* Kép */}
