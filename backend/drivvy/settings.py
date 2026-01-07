@@ -19,6 +19,9 @@ DEBUG = os.environ.get('DEBUG','True') == 'True'
 # Railway hosztolás engedélyezése
 ALLOWED_HOSTS = ['*']       
 
+# Ez mondja meg a Djangónak, hogy bízzon a Railway HTTPS kapcsolatában
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
