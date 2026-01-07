@@ -97,9 +97,6 @@ TEMPLATES = [
 
 
 # === ADATBÁZIS KONFIGURÁCIÓ ===
-# Logika: Ha van beállítva DB_HOST környezeti változó (Railway), akkor MSSQL.
-# Ha nincs (Localhost), akkor SQLite.
-
 print(f"DEBUG: DB_HOST értéke: '{os.environ.get('DB_HOST')}'")
 
 
