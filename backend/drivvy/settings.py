@@ -5,9 +5,6 @@ import os
 import sys
 from pathlib import Path
 
-print(">>> FIGYELEM! A SZERVER AZ UJ KODOT OLVASSA! <<<")
-raise ValueError("EZ EGY TESZT HIBA - HA EZT LATOD, MUKODIK A FRISSITES")
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Ez teszi lehetővé, hogy a Django megtalálja az 'apps' mappában lévő fájlokat
