@@ -1,7 +1,6 @@
-# 1. Alap image
+
 FROM python:3.11-slim-bullseye
 
-WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
     curl \
@@ -14,15 +13,13 @@ RUN apt-get update && apt-get install -y \
     && ACCEPT_EULA=Y apt-get install -y msodbcsql18 \
     && apt-get clean
 
-
-COPY requirements.txt .
+COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
+WORKDIR /app
 
-COPY . .
-
+COPY . /app/
 
 ENV PYTHONUNBUFFERED=1
 
-
-CMD python manage.py migrate && gunicorn drivvy.wsgi:application --bind 0.0.0.0:8000
+CMD ["gunicorn", "drivvy.wsgi:application", "--bind", "0.0.0.0:8000"]
