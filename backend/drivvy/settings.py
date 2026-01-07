@@ -98,6 +98,9 @@ WSGI_APPLICATION = 'drivvy.wsgi.application'
 # === ADATBÁZIS KONFIGURÁCIÓ ===
 # Logika: Ha van beállítva DB_HOST környezeti változó (Railway), akkor MSSQL.
 # Ha nincs (Localhost), akkor SQLite.
+
+print(f"DEBUG: DB_HOST értéke: '{os.environ.get('DB_HOST')}'")
+
 if os.environ.get('DB_HOST'):
     DATABASES = {
         'default': {
@@ -114,13 +117,8 @@ if os.environ.get('DB_HOST'):
         }
     }
 else:
-    # Helyi fejlesztés
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+    print("HIBA: A rendszer nem találja a DB_HOST változót! Állj le!")
+    DATABASES = {}
 
 
 # Password validation
