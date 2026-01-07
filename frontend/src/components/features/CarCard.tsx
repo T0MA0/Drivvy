@@ -7,7 +7,7 @@ interface CarProps {
     onOpenModal?: (car: any) => void;
 }
 
-export default function CarCard({ car }: CarProps) {
+export default function CarCard({ car, onOpenModal}: CarProps) {
     return (
         <div className="card" style={{ padding: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%' }}>
             {/* Kép */}
