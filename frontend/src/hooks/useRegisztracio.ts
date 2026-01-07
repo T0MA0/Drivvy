@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { registerUser, RegisterData } from '../services/authentication';
+import { registerUser, RegisterData } from '@/services/authentication';
 
 export const useRegister = () => {
     const router = useRouter();
