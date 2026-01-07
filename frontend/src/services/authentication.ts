@@ -1,4 +1,4 @@
-const API_URL = 'https://drivvy-production.up.railway.app';
+const API_URL = 'https://drivvy-production.up.railway.app/api';
 
 export interface RegisterData {
     first_name: string;
