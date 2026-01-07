@@ -4,6 +4,7 @@ import { Star } from 'lucide-react';
 
 interface CarProps {
     car: any;
+    onOpenModal?: (car: any) => void;
 }
 
 export default function CarCard({ car }: CarProps) {

@@ -7,6 +7,7 @@ import CarCard from '@/components/features/CarCard';
 import CarModal from '@/components/features/CarModal';
 import SearchBar from '@/components/searchbar/searchbar'; 
 
+
 function CarsContent() {
     const [cars, setCars] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
