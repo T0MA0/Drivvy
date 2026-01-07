@@ -62,6 +62,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 CSRF_TRUSTED_ORIGINS = [
     'https://drivvy-production.up.railway.app',
+    "https://drivvy-carsharing.vercel.app"
 ]
 
 
