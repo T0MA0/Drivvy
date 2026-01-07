@@ -15,7 +15,7 @@ export const getCars = async (filters: any = {}) => {
     });
 
     //Lekérés a paraméterekkel
-    const response = await fetch(`${API_URL}/cars/?${params.toString()}`, {
+    const response = await fetch(`${API_URL}/api/cars/?${params.toString()}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

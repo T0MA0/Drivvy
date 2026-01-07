@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useState, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation'; 
 import { getCars } from '@/services/autoService';
 import FilterSidebar from '@/components/features/FilterSidebar';
 import CarCard from '@/components/features/CarCard';
 import CarModal from '@/components/features/CarModal';
 import SearchBar from '@/components/searchbar/searchbar'; 
 
-
 function CarsContent() {
+    const searchParams = useSearchParams(); 
     const [cars, setCars] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedCar, setSelectedCar] = useState<any>(null);
@@ -24,7 +25,15 @@ function CarsContent() {
         const fetchCars = async () => {
             setLoading(true);
             try {
-                const data = await getCars(filters);
+                const startDate = searchParams.get('start_date');
+                const endDate = searchParams.get('end_date');
+
+                const queryParams = {
+                    ...filters, 
+                    start_date: startDate, 
+                    end_date: endDate      
+                };
+                const data = await getCars(queryParams);
                 setCars(data);
             } catch (err) {
                 console.error(err);
@@ -39,7 +48,7 @@ function CarsContent() {
 
         return () => clearTimeout(timeoutId);
 
-    }, [filters]);
+    }, [filters, searchParams]); 
 
     return (
         <section style={{ minHeight: '100vh', background: '#111', paddingBottom: '80px' }}>
@@ -72,8 +81,6 @@ function CarsContent() {
                     maxWidth: '900px',
                     padding: '0 1rem'
                 }}>
-                    
-                    {/* A SearchBar miatt kell a Suspense a szülőbe! */}
                     <div style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)' }}>
                         <h2 style={{ color: 'white', marginBottom: '1rem', fontSize: '1.8rem', fontWeight: 'bold' }}>
                             A keresésed
@@ -83,15 +90,18 @@ function CarsContent() {
                 </div>
             </div>
 
-            {/* === 2. TARTALOM (SZŰRŐ + LISTA) === */}
+            {/* TARTALOM */}
             <div className="container" style={{ marginTop: '3rem' }}>
                 <div style={{marginBottom: '3rem'}}>
                     <h1 style={{ fontSize: '2.2rem', fontWeight: '800', marginBottom: '0.5rem', color: 'white' }}>
-                        Elérhető autók Győrben <span style={{ color: 'var(--muted)', fontSize: '1.2rem', fontWeight: 'normal' }}>({cars.length} találat)</span>
+                        Elérhető autók <span style={{ color: 'var(--muted)', fontSize: '1.2rem', fontWeight: 'normal' }}>({cars.length} találat)</span>
                     </h1>
-                    <p style={{ color: 'var(--muted)', fontSize: '1.1rem' }}>
-                        Válogass a legújabb hirdetések közül. Találd meg a tökéletes autót utazásodhoz!
-                    </p>
+                    {searchParams.get('start_date') && (
+                        <p style={{color: '#4ade80', fontWeight: 'bold'}}>
+                            Időszak: {searchParams.get('start_date')} — {searchParams.get('end_date')}
+                        </p>
+                    )}
+
                 </div>
 
                 <div style={{ 
@@ -125,7 +135,6 @@ function CarsContent() {
                         ) : (
                             <div className="card" style={{gridColumn: '1/-1', textAlign: 'center', padding: '3rem'}}>
                                 <h3 style={{color: 'white'}}>Nincs találat.</h3>
-                                <p style={{color: 'var(--muted)'}}>Próbáld meg módosítani a szűrőket.</p>
                             </div>
                         )}
                     </div>
@@ -143,7 +152,6 @@ function CarsContent() {
     );
 }
 
-// tartalom becsomagolás
 export default function CarsPage() {
     return (
         <Suspense fallback={<div style={{color:'white', textAlign:'center', padding:'50px'}}>Autók betöltése...</div>}>
