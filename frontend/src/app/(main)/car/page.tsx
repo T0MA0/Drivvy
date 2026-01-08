@@ -8,7 +8,6 @@ import CarCard from '@/components/features/CarCard';
 import CarModal from '@/components/features/CarModal';
 import SearchBar from '@/components/searchbar/searchbar'; 
 import Image from 'next/image';
-
 function CarsContent() {
     const searchParams = useSearchParams(); 
     const [cars, setCars] = useState<any[]>([]);
@@ -50,6 +49,10 @@ function CarsContent() {
         return () => clearTimeout(timeoutId);
 
     }, [filters, searchParams]); 
+
+    const openModal = (car: any) => {
+        setSelectedCar(car);
+    };
 
     return (
         <section style={{ minHeight: '100vh', background: '#111', paddingBottom: '80px' }}>
@@ -131,7 +134,7 @@ function CarsContent() {
                                 <CarCard 
                                     key={car.id} 
                                     car={car} 
-                                    onOpenModal={(car) => setSelectedCar(car)} 
+                                    onViewDetails={openModal}
                                 />
                             ))
                         ) : (
@@ -154,7 +157,6 @@ function CarsContent() {
         </section>
     );
 }
-
 export default function CarsPage() {
     return (
         <Suspense fallback={<div style={{color:'white', textAlign:'center', padding:'50px'}}>Autók betöltése...</div>}>
