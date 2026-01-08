@@ -62,7 +62,7 @@ export default function CarModal({ car, isOpen, onClose }: ModalProps) {
             />
             </div>
           {/* Árnyék beállítása*/}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1b1e24] via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-[#1b1e24]" />
+          <div className="relative inset-0 bg-gradient-to-t from-[#1b1e24] via-transparent to-transparent md:bg-gradient-to-b md:from-transparent md:to-[#1b1e24]" />
         </div>
 
         {/* --- Hírdetés Adatok --- */}
