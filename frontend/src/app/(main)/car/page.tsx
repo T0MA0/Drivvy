@@ -146,7 +146,8 @@ function CarsContent() {
             {/* MODAL */}
             {selectedCar && (
                 <CarModal 
-                    car={selectedCar} 
+                    car={selectedCar}
+                    isOpen={true} 
                     onClose={() => setSelectedCar(null)} 
                 />
             )}
