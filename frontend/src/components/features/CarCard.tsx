@@ -5,9 +5,10 @@ import { Star } from 'lucide-react';
 interface CarProps {
     car: any;
     onOpenModal?: (car: any) => void; 
+    onViewDetails: (car: any) => void;
 }
 
-export default function CarCard({ car }: CarProps) {
+export default function CarCard({ car, onViewDetails }: CarProps) {
     return (
         <div className="card" style={{ padding: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%' }}>
             {/* Kép */}
@@ -52,13 +53,19 @@ export default function CarCard({ car }: CarProps) {
                         </span>
                         <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}> / nap</span>
                     </div>
-                    <Link 
-                        href={`/autok/${car.id}`} 
+                    <button 
+                        onClick={() => onViewDetails(car)}
                         className="btn btn--primary" 
-                        style={{ padding: '0.6rem 1.2rem', fontSize: '0.9rem', textDecoration: 'none' }}
+                        style={{ 
+                            padding: '0.6rem 1.2rem', 
+                            fontSize: '0.9rem', 
+                            cursor: 'pointer',
+                            border: 'none',
+                            background: '#2ecc71', color: 'white', borderRadius: '5px' 
+                        }}
                     >
                         Részletek
-                    </Link>
+                    </button>
                     
                 </div>
             </div>
