@@ -94,11 +94,7 @@ export default function BookingPage() {
                     <div className="lg:col-span-2 space-y-8">
                         
                         {/* 1. Bérlés Időtartama */}
-<<<<<<< HEAD
-                        <div className="bg-[#1b1e24] p-6 rounded-xl border border-gray-800">
-=======
                         <div className="bg-[#1b1e24] p-6 rounded-xl border border-gray-800 shadow-xl">
->>>>>>> origin
                             <h2 className="text-xl font-bold text-green-500 mb-4 flex items-center gap-2">
                                 <Calendar size={20} /> 1. Bérlés Időtartama
                             </h2>
@@ -125,11 +121,7 @@ export default function BookingPage() {
                         </div>
 
                         {/* 2. Számlázási Adatok */}
-<<<<<<< HEAD
-                        <div className="bg-[#1b1e24] p-6 rounded-xl border border-gray-800">
-=======
                         <div className="bg-[#1b1e24] p-6 rounded-xl border border-gray-800 shadow-xl">
->>>>>>> origin
                             <h2 className="text-xl font-bold text-green-500 mb-4 flex items-center gap-2">
                                 <User size={20} /> 2. Számlázási Adatok
                             </h2>
@@ -150,11 +142,8 @@ export default function BookingPage() {
                         </div>
 
                         {/* 3. Fizetési Mód */}
-<<<<<<< HEAD
                         <div className="bg-[#1b1e24] p-6 rounded-xl border border-gray-800">
-=======
                         <div className="bg-[#1b1e24] p-6 rounded-xl border border-gray-800 shadow-xl">
->>>>>>> origin
                             <h2 className="text-xl font-bold text-green-500 mb-4 flex items-center gap-2">
                                 <CreditCard size={20} /> 3. Fizetési Mód
                             </h2>
