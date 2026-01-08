@@ -5,6 +5,8 @@ from django.db.models import Q
 from .models import Car
 from .serializers import CarSerializer
 from apps.bookings.models import Booking
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import CarFilter
 
 class CarListAPIView(generics.ListAPIView):
     serializer_class = CarSerializer
