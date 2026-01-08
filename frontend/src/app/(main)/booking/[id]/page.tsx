@@ -92,7 +92,6 @@ export default function BookingPage() {
                     
                     {/* --- BAL OLDAL: ŰRLAPOK --- */}
                     <div className="lg:col-span-2 space-y-8">
-                        
                         {/* 1. Bérlés Időtartama */}
                         <div className="bg-[#1b1e24] p-6 rounded-xl border border-gray-800 shadow-xl">
                             <h2 className="text-xl font-bold text-green-500 mb-4 flex items-center gap-2">
@@ -142,7 +141,6 @@ export default function BookingPage() {
                         </div>
 
                         {/* 3. Fizetési Mód */}
-                        <div className="bg-[#1b1e24] p-6 rounded-xl border border-gray-800">
                         <div className="bg-[#1b1e24] p-6 rounded-xl border border-gray-800 shadow-xl">
                             <h2 className="text-xl font-bold text-green-500 mb-4 flex items-center gap-2">
                                 <CreditCard size={20} /> 3. Fizetési Mód
@@ -193,12 +191,11 @@ export default function BookingPage() {
                                     </div>
                                 </div>
                             )}
-                        </div>
 
-                        {/* Fizetés gomb */}
-                        <button type="submit" className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-4 rounded-xl text-lg shadow-lg hover:shadow-green-500/20 transition-all flex items-center justify-center gap-2">
-                            <CheckCircle size={24} /> Fizetés és Foglalás
-                        </button>
+                            {/* Fizetés gomb */}
+                            <button type="submit" className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-4 rounded-xl text-lg shadow-lg hover:shadow-green-500/20 transition-all flex items-center justify-center gap-2">
+                                <CheckCircle size={24} /> Fizetés és Foglalás
+                            </button>
                     </div>
 
                     {/* --- JOBB OLDAL: ÖSSZEFOGLALÓ (STICKY) --- */}
@@ -251,9 +248,9 @@ export default function BookingPage() {
                             </p>
                         </div>
                     </div>
-
-                </form>
-            </div>
-        </section>
+                 </div>
+             </form>
+        </div>
+    </section>
     );
 }
