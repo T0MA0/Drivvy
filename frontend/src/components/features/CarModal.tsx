@@ -142,7 +142,7 @@ export default function CarModal({ car, isOpen, onClose }: ModalProps) {
             <button 
               onClick={() => {
                 onClose(); 
-                router.push('/login');
+                router.push('/bejelentkezes');
               }}
               className="w-full sm:w-auto bg-gray-600 hover:bg-gray-500 text-white font-semibold py-3 px-8 rounded-lg transition-all shadow-lg hover:shadow-green-500/20"
             >
