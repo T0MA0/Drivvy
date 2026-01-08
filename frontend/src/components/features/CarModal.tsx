@@ -26,7 +26,7 @@ interface ModalProps {
 
 export default function CarModal({ car, isOpen, onClose }: ModalProps) {
   const router = useRouter();
-t
+
   if (!isOpen || !car) return null;
 
   useEffect(() => {
