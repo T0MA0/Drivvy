@@ -141,7 +141,7 @@ export default function CarModal({ car, isOpen, onClose }: ModalProps) {
             <button 
                 onClick={() => {
                 onClose(); 
-                router.push(`/foglalas/${car.id}`); 
+                router.push(`/booking/${car.id}`); 
             }} className="w-full sm:w-auto bg-green-600 hover:bg-green-500 text-white font-semibold py-3 px-8 rounded-lg transition-all shadow-lg hover:shadow-green-500/20"
             >
             Jelentkezz be a foglaláshoz
