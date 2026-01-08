@@ -1,82 +1,162 @@
-import Image from "next/image";
-import { X, Star } from "lucide-react";
+"use client";
 
-interface ModalProps {
-    car: any;
-    onClose: () => void;
+import { useEffect } from "react";
+
+import { X, Star, Check, Calendar, Settings, Fuel, Thermometer } from "lucide-react";
+
+interface Car {
+  id: number;
+  brand: string;
+  model: string;
+  year: number;
+  fuel_type: string;
+  transmission: string;
+  price_per_day: number;
+  is_available: boolean;
+  image?: string;
+  description?: string;
+  deposit?: number;
 }
 
-export default function CarModal({ car, onClose }: ModalProps) {
-    if (!car) return null;
+interface ModalProps {
+  car: Car | null;
+  isOpen: boolean;
+  onClose: () => void;
+}
 
-    return (
-        <div style={{ 
-            position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', 
-            zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem',
-            backdropFilter: 'blur(5px)'
-        }}>
-            <div className="card" style={{ 
-                width: '100%', maxWidth: '950px', padding: '0', overflow: 'hidden', position: 'relative',
-                display: 'grid', gridTemplateColumns: '1fr 1.3fr', minHeight: '550px',
-                boxShadow: '0 20px 50px rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.1)'
-            }}>
-                {/* Bal oldal: Kép */}
-                <div style={{ position: 'relative', background: '#000', minHeight: '300px' }}>
-                     <Image 
-                        src={car.image || '/placeholder.jpg'} 
-                        alt={car.brand}
-                        fill
-                        style={{ objectFit: 'cover' }}
-                    />
-                </div>
+export default function CarModal({ car, isOpen, onClose }: ModalProps) {
+  if (!isOpen || !car) return null;
 
-                {/* Jobb oldal: Adatok */}
-                <div style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', background: '#1b1e24' }}>
-                    <button onClick={onClose} style={{ position: 'absolute', top: '20px', right: '20px', background: 'none', border: 'none', color: 'white', cursor: 'pointer' }}>
-                        <X size={32} />
-                    </button>
 
-                    <h2 style={{ color: 'var(--primary)', fontSize: '2.2rem', marginBottom: '0.5rem', lineHeight: 1 }}>
-                        {car.brand} {car.model}
-                    </h2>
-                    <p style={{ color: 'var(--muted)', marginBottom: '2rem', display: 'flex', alignItems: 'center' }}>
-                        Tulajdonos: {car.owner?.first_name || 'Drivvy'} | 
-                        <span style={{display:'flex', alignItems:'center', marginLeft:'5px', color: '#f1c40f'}}>
-                            <Star size={14} fill="#f1c40f" style={{marginRight:'3px'}}/> 5.0
-                        </span>
-                    </p>
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [onClose]);
 
-                    {/* Scrollos tartalom */}
-                    <div style={{ overflowY: 'auto', maxHeight: '320px', paddingRight: '15px', flexGrow: 1 }}>
-                        <h4 style={{ color: 'white', fontSize: '1.1rem', marginBottom: '10px' }}>Részletes leírás</h4>
-                        <p style={{ color: '#ccc', lineHeight: '1.6', marginBottom: '2rem', fontSize: '0.95rem' }}>
-                            {car.description || "Prémium élmény! Teljesen új modell, automata váltóval. Kényelem és elegancia egyben. Hosszabb utakra is kiválóan alkalmas."}
-                        </p>
 
-                        <h4 style={{ color: 'white', fontSize: '1.1rem', marginBottom: '10px' }}>Bérlés feltételei</h4>
-                        <ul style={{ color: '#ccc', listStyle: 'none', padding: 0, lineHeight: '2', fontSize: '0.95rem' }}>
-                            <li>📍 <strong>Átvétel:</strong> Győr, Széchenyi tér</li>
-                            <li>⏱️ <strong>Minimum bérlés:</strong> 1 nap</li>
-                            <li>💰 <strong>Kaució:</strong> {parseInt(car.deposit || 50000).toLocaleString()} Ft</li>
-                            <li>📅 <strong>Foglalt napok:</strong> Nincs</li>
-                        </ul>
-                    </div>
+  const imageSrc = car.image 
+    ? (car.image.startsWith('/') ? car.image : `/${car.image}`)
+    : '/placeholder.jpg';
 
-                    {/* Alsó sáv */}
-                    <div style={{ marginTop: '2rem', paddingTop: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                        <div>
-                            <span style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--primary)' }}>
-                                {parseInt(car.price_per_day).toLocaleString()}
-                            </span>
-                            <span style={{ fontSize: '1rem', color: 'white' }}> / nap (Ft)</span>
-                        </div>
-                        
-                        <button className="btn btn--primary" style={{ padding: '0.9rem 2.5rem', fontSize: '1rem' }}>
-                            Jelentkezz be a foglaláshoz
-                        </button>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/85 backdrop-blur-sm p-4">
+      <div className="bg-[#1b1e24] w-full max-w-5xl rounded-xl shadow-2xl overflow-hidden relative flex flex-col md:flex-row max-h-[90vh]">
+        <button 
+          onClick={onClose} 
+          className="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-black/80 rounded-full text-white transition-colors"
+        >
+          <X size={24} />
+        </button>
+        <div className="relative h-64 md:h-auto md:w-5/12 bg-black">
+          <img 
+            src={imageSrc} 
+            alt={`${car.brand} ${car.model}`}
+            className="w-full h-full object-cover opacity-90"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1b1e24] via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-[#1b1e24]" />
         </div>
-    );
+
+        <div className="flex-1 flex flex-col p-6 md:p-8 overflow-hidden">
+          <div className="mb-6">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-green-500 mb-2 leading-tight">
+              {car.brand} <span className="text-white">{car.model}</span>
+            </h2>
+            <div className="flex items-center text-gray-400 text-sm">
+              <span>Tulajdonos: Drivvy</span>
+              <span className="mx-2">|</span>
+              <span className="flex items-center text-yellow-400 font-medium">
+                <Star size={16} className="mr-1 fill-yellow-400" /> 5.0
+              </span>
+            </div>
+          </div>
+
+          <div className="flex-1 overflow-y-auto pr-2 space-y-8 custom-scrollbar">
+            
+            <section>
+              <h3 className="text-lg font-semibold text-white mb-2 border-b border-gray-700 pb-1">
+                Részletes leírás
+              </h3>
+              <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                {car.description || `Prémium élmény! Ez a ${car.year}-es évjáratú ${car.brand} ${car.model} tökéletes választás hosszú utakra és városi közlekedésre egyaránt. ${car.fuel_type} üzemű és ${car.transmission.toLowerCase()} váltóval rendelkezik a maximális kényelem érdekében.`}
+              </p>
+            </section>
+
+            <section>
+              <h3 className="text-lg font-semibold text-white mb-3 border-b border-gray-700 pb-1">
+                Főbb Jellemzők
+              </h3>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-gray-800/50 p-3 rounded-lg flex items-center gap-3">
+                  <Calendar className="text-gray-500" size={20} />
+                  <div>
+                    <span className="block text-xs text-gray-500">Évjárat</span>
+                    <span className="text-white font-medium">{car.year}</span>
+                  </div>
+                </div>
+                <div className="bg-gray-800/50 p-3 rounded-lg flex items-center gap-3">
+                  <Settings className="text-gray-500" size={20} />
+                  <div>
+                    <span className="block text-xs text-gray-500">Váltó</span>
+                    <span className="text-white font-medium">{car.transmission}</span>
+                  </div>
+                </div>
+                <div className="bg-gray-800/50 p-3 rounded-lg flex items-center gap-3">
+                  <Fuel className="text-gray-500" size={20} />
+                  <div>
+                    <span className="block text-xs text-gray-500">Üzemanyag</span>
+                    <span className="text-white font-medium">{car.fuel_type}</span>
+                  </div>
+                </div>
+                <div className="bg-gray-800/50 p-3 rounded-lg flex items-center gap-3">
+                  <Thermometer className="text-gray-500" size={20} />
+                  <div>
+                    <span className="block text-xs text-gray-500">Klíma</span>
+                    <span className="text-white font-medium">Van</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <h3 className="text-lg font-semibold text-white mb-2 border-b border-gray-700 pb-1">
+                Bérlés feltételei
+              </h3>
+              <ul className="space-y-2 text-gray-300 text-sm">
+                <li className="flex items-start gap-2">
+                  <Check size={16} className="text-green-500 mt-1" />
+                  <span><strong>Átvétel:</strong> Győr, Széchenyi tér (vagy egyeztetés)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check size={16} className="text-green-500 mt-1" />
+                  <span><strong>Minimum bérlés:</strong> 1 nap</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check size={16} className="text-green-500 mt-1" />
+                  <span><strong>Kaució:</strong> {(car.deposit || 50000).toLocaleString()} Ft</span>
+                </li>
+              </ul>
+            </section>
+          </div>
+
+          {/* ALSÓ SÁV (Ár és Gomb) */}
+          <div className="mt-6 pt-4 border-t border-gray-700 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+              <span className="text-3xl font-extrabold text-green-500">
+                {car.price_per_day.toLocaleString()}
+              </span>
+              <span className="text-white text-lg"> Ft / nap</span>
+            </div>
+            
+            <button className="w-full sm:w-auto bg-gray-600 hover:bg-gray-500 text-white font-semibold py-3 px-8 rounded-lg transition-all shadow-lg hover:shadow-green-500/20">
+              Jelentkezz be a foglaláshoz
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
 }
