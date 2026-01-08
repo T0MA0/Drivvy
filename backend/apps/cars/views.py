@@ -1,44 +1,38 @@
-
 from rest_framework import generics
-from rest_framework.response import Response
+# Fontos: Az OrderingFilter-t importálni kell a rest_framework.filters-ből!
+from rest_framework.filters import OrderingFilter 
+from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Q
 from .models import Car
 from .serializers import CarSerializer
-from apps.bookings.models import Booking
-from django_filters.rest_framework import DjangoFilterBackend
 from .filters import CarFilter
+from apps.bookings.models import Booking
 
 class CarListAPIView(generics.ListAPIView):
     serializer_class = CarSerializer
+    
+    # --- Konfiguráció kiemelése ---
+    filter_backends = (DjangoFilterBackend, OrderingFilter)
+    filterset_class = CarFilter
+    
+    # Rendezési beállítások (hogy működjön a ?ordering=price_per_day)
+    ordering_fields = ['price_per_day', 'year', 'created_at']
+    ordering = ['-created_at']
 
     def get_queryset(self):
         queryset = Car.objects.all()
 
-
-        start_date = self.request.query_params.get('start_date') # pl: 2026-01-10
-        end_date = self.request.query_params.get('end_date')     # pl: 2026-01-15
+        # --- EGYEDI LOGIKA: Dátum elérhetőség ---
+        start_date = self.request.query_params.get('start_date')
+        end_date = self.request.query_params.get('end_date')
 
         if start_date and end_date:
-
+            # Megkeressük azokat az autókat, amik FOGLALTAK ebben az időszakban
             booked_car_ids = Booking.objects.filter(
                 Q(start_date__lte=end_date) & Q(end_date__gte=start_date),
-                status__in=['confirmed', 'pending_payment'] #
+                status__in=['confirmed', 'pending_payment']
             ).values_list('car_id', flat=True)
 
             queryset = queryset.exclude(id__in=booked_car_ids)
-
-        brand = self.request.query_params.get('brand')
-        category = self.request.query_params.get('category')
-        min_price = self.request.query_params.get('min_price')
-        max_price = self.request.query_params.get('max_price')
-
-        if brand:
-            queryset = queryset.filter(brand__iexact=brand)
-        if category:
-            queryset = queryset.filter(category__name__iexact=category)
-        if min_price:
-            queryset = queryset.filter(price_per_day__gte=min_price)
-        if max_price:
-            queryset = queryset.filter(price_per_day__lte=max_price)
 
         return queryset
