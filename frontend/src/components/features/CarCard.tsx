@@ -13,7 +13,7 @@ export default function CarCard({ car }: CarProps) {
             {/* Kép */}
             <div style={{ position: 'relative', height: '200px', width: '100%' }}>
                 <Image 
-                    src={car.image || '/placeholde.jpg'} 
+                    src={car.image || '/placeholder.jpg'} 
                     alt={`${car.brand} ${car.model}`}
                     fill
                     style={{ objectFit: 'cover' }}
