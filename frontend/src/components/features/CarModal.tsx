@@ -138,15 +138,13 @@ export default function CarModal({ car, isOpen, onClose }: ModalProps) {
               <span className="text-white text-lg"> Ft / nap</span>
             </div>
             
-            {/* 2. A MŰKÖDŐ GOMB */}
             <button 
-              onClick={() => {
+                onClick={() => {
                 onClose(); 
-                router.push('/bejelentkezes');
-              }}
-              className="w-full sm:w-auto bg-gray-600 hover:bg-gray-500 text-white font-semibold py-3 px-8 rounded-lg transition-all shadow-lg hover:shadow-green-500/20"
+                router.push(`/foglalas/${car.id}`); 
+            }} className="w-full sm:w-auto bg-green-600 hover:bg-green-500 text-white font-semibold py-3 px-8 rounded-lg transition-all shadow-lg hover:shadow-green-500/20"
             >
-              Jelentkezz be a foglaláshoz
+            Jelentkezz be a foglaláshoz
             </button>
           </div>
 
