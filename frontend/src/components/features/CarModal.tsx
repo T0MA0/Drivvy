@@ -52,20 +52,18 @@ export default function CarModal({ car, isOpen, onClose }: ModalProps) {
           <X size={24} />
         </button>
 
-        {/* --- BAL OLDAL: KÉP --- */}
-        <div className="relative h-64 md:h-auto md:w-5/12 bg-black">
+        {/* --- Autó Kép --- */}
+        <div className="relative w-screen left-1/2 -translate-x-1/2 h-64 md:h-auto md:w-5/12 bg-black">
           <img 
             src={imageSrc} 
             alt={`${car.brand} ${car.model}`}
             className="w-full h-full object-cover opacity-90"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1b1e24] via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-[#1b1e24]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1b1e24] via-transparent to-transparent md:bg-gradient-to-b md:from-transparent md:to-[#1b1e24]" />
         </div>
 
-        {/* --- JOBB OLDAL: ADATOK --- */}
+        {/* --- Hírdetés Adatok --- */}
         <div className="flex-1 flex flex-col p-6 md:p-8 overflow-hidden">
-          
-          {/* Cím */}
           <div className="mb-6">
             <h2 className="text-3xl md:text-4xl font-extrabold text-green-500 mb-2 leading-tight">
               {car.brand} <span className="text-white">{car.model}</span>

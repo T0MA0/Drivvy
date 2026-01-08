@@ -27,11 +27,13 @@ export default function BookingPage() {
 
     // Űrlap állapotok
     const [dates, setDates] = useState({ start: "", end: "" });
-    const [paymentMethod, setPaymentMethod] = useState("card");
+    const [paymentMethod, setPaymentMethod] = useState("card"); // 'card' vagy 'transfer'
     
+    // Számolt értékek
     const [totalDays, setTotalDays] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
 
+    // 1. Autó adatainak betöltése
     useEffect(() => {
         if (params.id) {
             getCarById(params.id as string).then((data) => {
@@ -41,15 +43,17 @@ export default function BookingPage() {
         }
     }, [params.id]);
 
-    //Árkalkuláció, amikor változik a dátum
+    // 2. Árkalkuláció, amikor változik a dátum
     useEffect(() => {
         if (dates.start && dates.end && car) {
             const start = new Date(dates.start);
             const end = new Date(dates.end);
             
+            // Különbség napokban (milliszekundumból számolva)
             const diffTime = Math.abs(end.getTime() - start.getTime());
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
             
+            // Ha a végdátum előbb van, mint a kezdő, vagy ugyanaz a nap, legyen 1 nap minimum
             const days = diffDays > 0 ? diffDays : 1;
             
             setTotalDays(days);
@@ -79,7 +83,7 @@ export default function BookingPage() {
                     {/* --- BAL OLDAL: ŰRLAPOK --- */}
                     <div className="lg:col-span-2 space-y-8">
                         
-                        {/* Bérlés Időtartama */}
+                        {/* 1. Bérlés Időtartama */}
                         <div className="bg-[#1b1e24] p-6 rounded-xl border border-gray-800">
                             <h2 className="text-xl font-bold text-green-500 mb-4 flex items-center gap-2">
                                 1. Bérlés Időtartama
@@ -106,7 +110,7 @@ export default function BookingPage() {
                             </div>
                         </div>
 
-                        {/* Számlázási Adatok */}
+                        {/* 2. Számlázási Adatok */}
                         <div className="bg-[#1b1e24] p-6 rounded-xl border border-gray-800">
                             <h2 className="text-xl font-bold text-green-500 mb-4 flex items-center gap-2">
                                 2. Számlázási Adatok
@@ -127,7 +131,7 @@ export default function BookingPage() {
                             </div>
                         </div>
 
-                        {/* Fizetési Mód */}
+                        {/* 3. Fizetési Mód */}
                         <div className="bg-[#1b1e24] p-6 rounded-xl border border-gray-800">
                             <h2 className="text-xl font-bold text-green-500 mb-4 flex items-center gap-2">
                                 3. Fizetési Mód
