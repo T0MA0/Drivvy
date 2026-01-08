@@ -53,7 +53,7 @@ export default function CarModal({ car, isOpen, onClose }: ModalProps) {
         </button>
 
         {/* --- Autó Kép --- */}
-        <div className="relative w-screen left-1/2 -translate-x-1/2 h-64 md:h-auto md:w-5/12 bg-black">
+        <div className="relative w-full left-1/2 -translate-x-1/2 h-32 md:h-auto md:w-5/12 bg-black">
           <img 
             src={imageSrc} 
             alt={`${car.brand} ${car.model}`}
