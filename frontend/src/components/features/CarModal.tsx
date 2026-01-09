@@ -55,11 +55,11 @@ export default function CarModal({ car, isOpen, onClose }: ModalProps) {
 
         {/* --- Kép--- */}
 
-        <div className="relative w-full h-72 md:h-80 shrink-0 bg-black">
+        <div className="relative w-full h-72 shrink-0 bg-black">
           <img 
             src={imageSrc} 
             alt={`${car.brand} ${car.model}`}
-            className="w-full h-full object-cover opacity-95"
+            className="w-full h-full shrink-0 object-cover opacity-95"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1b1e24] via-transparent to-transparent" />
 
