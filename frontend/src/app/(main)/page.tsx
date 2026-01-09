@@ -12,7 +12,6 @@ export default function MainLayout(){
                 <div className="search card">
                     <h1  className="text-[2rem] leading-[1.2]">Autóbérlés <br/> <span className="text-[#d6dae3]">Győrben</span></h1>
                     
-                    {/*suspensebe csomagoljuk hogy ne dobjon hibát*/}
                     <Suspense fallback={<div className="p-4 text-white">Kereső betöltése...</div>}>
                         <SearchBar/>
                     </Suspense>
@@ -29,8 +28,6 @@ export default function MainLayout(){
                 </div>
             </div>
         </section>
-        
-        {/* ... A TÖBBI RÉSZ VÁLTOZATLAN ... */}
         
         {/* ===== Ilyen egyszerű ===== */}
         <section className="steps" id="steps">

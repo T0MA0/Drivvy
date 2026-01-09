@@ -65,7 +65,7 @@ export default function BookingPage() {
 
     return (
         <section className="min-h-screen relative py-12 flex justify-center bg-[#2b2b2b]">
-            <div className="absolute inset-0 bg-[url('/hatterkep.png')] bg-cover bg-center opacity-10 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.85)),url('/hatterkep.png')] bg-cover bg-center pointer-events-none"></div>
             <div className="container mx-auto px-4 relative z-10 max-w-7xl">
                 <form onSubmit={handleBooking} className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
                     
