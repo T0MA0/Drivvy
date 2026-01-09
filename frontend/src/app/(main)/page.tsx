@@ -19,7 +19,7 @@ export default function MainLayout(){
                 </div>
                 <div className="hero__copy">
                     <h1>Győri Drivvy – Szabadság és lehetőség négy keréken!</h1>
-                    <ul className="lead text-2xl">
+                    <ul className="lead">
                         <li>Nincs autód, de kellene egy napra? Vagy gyorsan átruccannál a város másik felére?</li>
                         <li>Bérelj autót egyszerűen, gyorsan, rugalmasan a mobilodról!</li>
                         <li>Saját autód van? Add meg másoknak is a vezetés élményét – közben szerezz plusz bevételt!</li>

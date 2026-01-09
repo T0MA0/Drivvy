@@ -33,7 +33,7 @@ class CarListAPIView(generics.ListAPIView):
 
             queryset = queryset.exclude(id__in=booked_car_ids)
 
-        if booked_car_ids:
-                queryset = queryset.exclude(id__in=booked_car_ids)
+            if booked_car_ids:
+                    queryset = queryset.exclude(id__in=booked_car_ids)
 
         return queryset
