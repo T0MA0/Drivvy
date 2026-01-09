@@ -32,7 +32,7 @@
     overflow-x: hidden;
     background:
       linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.85)),
-      url("/Háttérkép.png") center/cover fixed no-repeat;
+      url("/hatterkep.png") center/cover fixed no-repeat;
       background-attachment: fixed;   /*Headert fixálja*/
   }
   
