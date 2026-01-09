@@ -65,7 +65,7 @@ export default function BookingPage() {
 
     return (
         <section className="min-h-screen relative py-12 flex justify-center bg-[#2b2b2b]">
-            <div className="absolute inset-0 bg-[url('/bg-pattern.png')] opacity-10 pointer-events-none bg-Háttérkép.jpg"></div>
+            <div className="absolute inset-0 bg-[url('/bg-pattern.png')] opacity-10 pointer-events-none bg-[url('/Háttérkép.png')]"></div>
             <div className="container mx-auto px-4 relative z-10 max-w-7xl">
                 <form onSubmit={handleBooking} className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
                     
@@ -184,7 +184,7 @@ export default function BookingPage() {
                             </h3>
 
                             <p className="text-sm text-gray-400 mb-6 leading-relaxed">
-                                A költségek a választott dátumok alapján frissülnek. A végleges, hivatalos árat a szerver számolja ki a foglalás elküldésekor.
+                                A költségek a választott dátumok alapján frissülnek.
                             </p>
 
                             <div className="space-y-4 text-sm mb-6">
