@@ -20,6 +20,7 @@ urlpatterns = [
     path('api/register/', RegisterView.as_view(), name='register'),
     path('api/profile/', UserProfileView.as_view(), name='profile'),
     path('api/cars/', include('apps.cars.urls')),
+    path('api/bookings/', include('apps.bookings.urls')),
 ]
 
 # Képek kiszolgálása

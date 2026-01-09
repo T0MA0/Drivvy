@@ -8,9 +8,9 @@ export const getCars = async (filters: any = {}) => {
         const value = filters[key];
         if (Array.isArray(value)) {
             // Ha tömb (pl. több márka van kiválasztva), mindegyiket hozzáadjuk
-            value.forEach(val => params.append(key, val));
+            value.forEach(val => params.append(key, String(val)));
         } else if (value) {
-            params.append(key, value);
+            params.append(key, String(value));
         }
     });
 
@@ -36,11 +36,10 @@ export const getCarById = async (id: string) => {
         headers: {
             'Content-Type': 'application/json',
         },
-        cache: 'no-store' // Mindig friss adatot kérjen
     });
 
     if (!response.ok) {
-        throw new Error("Nem található ilyen autó.");
+        throw new Error("Hiba az autó betöltésében.");
     }
 
     return await response.json();

@@ -7,7 +7,7 @@ import FilterSidebar from '@/components/features/FilterSidebar';
 import CarCard from '@/components/features/CarCard';
 import CarModal from '@/components/features/CarModal';
 import SearchBar from '@/components/searchbar/searchbar'; 
-import Image from 'next/image';
+
 function CarsContent() {
     const searchParams = useSearchParams(); 
     const [cars, setCars] = useState<any[]>([]);

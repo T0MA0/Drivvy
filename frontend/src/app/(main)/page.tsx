@@ -18,8 +18,8 @@ export default function MainLayout(){
 
                 </div>
                 <div className="hero__copy">
-                    <h2>Győri Drivvy – Szabadság és lehetőség négy keréken!</h2>
-                    <ul className="lead">
+                    <h1>Győri Drivvy – Szabadság és lehetőség négy keréken!</h1>
+                    <ul className="lead text-2xl">
                         <li>Nincs autód, de kellene egy napra? Vagy gyorsan átruccannál a város másik felére?</li>
                         <li>Bérelj autót egyszerűen, gyorsan, rugalmasan a mobilodról!</li>
                         <li>Saját autód van? Add meg másoknak is a vezetés élményét – közben szerezz plusz bevételt!</li>
@@ -108,7 +108,7 @@ export default function MainLayout(){
         {/* ===== HOGYAN MŰKÖDIK ===== */}
         <section className="how_it_works" id="how-it-works">
             <div className="container">
-                <h2>Hogyan működik a Drivvy?</h2>
+                <h1>Hogyan működik a Drivvy?</h1>
                 <p className="how_it_works__desc">
                     A Drivvy segítségével egyszerűen bérelhetsz autót magánszemélyektől, vagy akár ki is adhatod
                     a saját autódat, ha épp nincs rá szükséged. Néhány lépésben már indulhatsz is:

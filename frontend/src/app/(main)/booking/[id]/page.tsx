@@ -2,64 +2,115 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { CreditCard, Calendar, CheckCircle } from "lucide-react";
 
-// Teszt adatok
-const getCarById = async (id: string) => {
-    return {
-        id: parseInt(id),
-        brand: "Audi",
-        model: "A4 B8",
-        year: 2021,
-        price_per_day: 12500,
-        image: "cars/audi.jpg",
-        deposit: 50000
-    };
-};
+import { getCarById } from "@/services/autoService";
+import { createBooking } from "@/services/bookingService";
 
 export default function BookingPage() {
     const params = useParams();
     const router = useRouter();
     
+    // Állapotok
     const [car, setCar] = useState<any>(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+    const [submitting, setSubmitting] = useState(false);
 
-    // Űrlap állapotok
+    // Űrlap adatok
     const [dates, setDates] = useState({ start: "", end: "" });
-    const [paymentMethod, setPaymentMethod] = useState("card"); // 'card' vagy 'transfer'
+    const [paymentMethod, setPaymentMethod] = useState("card");
     
     // Számolt értékek
     const [totalDays, setTotalDays] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
 
-    // Adatok betöltése
+    // AUTÓ BETÖLTÉSE
     useEffect(() => {
-        if (params.id) {
-            getCarById(params.id as string).then((data) => {
+        const loadCar = async () => {
+            if (!params.id) return;
+            try {
+                const data = await getCarById(params.id as string);
                 setCar(data);
+            } catch (err) {
+                setError("Nem sikerült betölteni az autó adatait.");
+            } finally {
                 setLoading(false);
-            });
-        }
+            }
+        };
+
+        loadCar();
     }, [params.id]);
 
-    // Árkalkuláció
+    // ÁRKALKULÁCIÓ
     useEffect(() => {
         if (dates.start && dates.end && car) {
             const start = new Date(dates.start);
             const end = new Date(dates.end);
-            const diffTime = Math.abs(end.getTime() - start.getTime());
+            const diffTime = end.getTime() - start.getTime();
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-            const days = diffDays > 0 ? diffDays : 1;
             
-            setTotalDays(days);
-            setTotalPrice(days * car.price_per_day);
+            if (diffDays > 0) {
+                setTotalDays(diffDays);
+                setTotalPrice(diffDays * car.price_per_day);
+            } else {
+                setTotalDays(0);
+                setTotalPrice(0);
+            }
         }
     }, [dates, car]);
 
-    const handleBooking = (e: React.FormEvent) => {
+    // FOGLALÁS BEKÜLDÉSE
+    const handleBooking = async (e: React.FormEvent) => {
         e.preventDefault();
-        alert("Foglalás elküldve! (Demo)");
+        setError("");
+        setSubmitting(true);
+
+        if (totalDays <= 0) {
+            alert("Kérlek válassz érvényes dátumokat!");
+            setSubmitting(false);
+            return;
+        }
+
+        try {
+            await createBooking({
+                car: car.id,
+                start_date: dates.start,
+                end_date: dates.end
+            });
+
+            alert("Sikeres foglalás! 🎉");
+            router.push("/profile"); 
+
+        } catch (err: any) {
+            let errorMessage = "Hiba történt a foglalás során.";
+            
+            try {
+                 const parsedError = JSON.parse(err.message);
+                 
+                 if (parsedError.non_field_errors) {
+                     errorMessage = parsedError.non_field_errors[0];
+                 } else if (parsedError.detail) {
+                     errorMessage = parsedError.detail;
+                 } else if (parsedError.start_date) {
+                     errorMessage = `Dátum hiba: ${parsedError.start_date[0]}`;
+                 } else {
+                     errorMessage = Object.values(parsedError).flat().join(" ");
+                 }
+            } catch (e) {
+                if (err.message) errorMessage = err.message;
+            }
+            
+            if (errorMessage.includes("Nincs bejelentkezve") || errorMessage.includes("token")) {
+                router.push("/login");
+            } else {
+                // Minden más hiba
+                alert(`Hiba: ${errorMessage}`);
+            }
+        } finally {
+            setSubmitting(false);
+        }
     };
+
 
     if (loading) return <div className="min-h-screen bg-[#111] text-white flex items-center justify-center">Betöltés...</div>;
 
@@ -68,10 +119,8 @@ export default function BookingPage() {
             <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.85)),url('/hatterkep.png')] bg-cover bg-center pointer-events-none"></div>
             <div className="container mx-auto px-4 relative z-10 max-w-7xl">
                 <form onSubmit={handleBooking} className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                    
-                    {/* --- BAL OLDAL: A NAGY ŰRLAP KÁRTYA --- */}
+
                     <div className="lg:col-span-2 bg-[#1b1e24] rounded-xl p-8 shadow-2xl border border-gray-800">
-                        
                         {/* Bérlés Időtartama */}
                         <div className="mb-8">
                             <h2 className="text-xl font-bold text-green-500 mb-4">
